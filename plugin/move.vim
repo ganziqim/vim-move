@@ -26,6 +26,22 @@ if !exists('g:move_past_end_of_line')
     let g:move_past_end_of_line = 1
 endif
 
+if !exists('g:move_key_up')
+    let g:move_key_up = 'k'
+endif
+
+if !exists('g:move_key_down')
+    let g:move_key_down = 'j'
+endif
+
+if !exists('g:move_key_left')
+    let g:move_key_left = 'h'
+endif
+
+if !exists('g:move_key_right')
+    let g:move_key_right = 'l'
+endif
+
 function! s:ResetCursor()
     normal! gv=gv^
 endfunction
@@ -296,13 +312,13 @@ nnoremap <silent> <Plug>MoveCharRight           :<C-u>call <SID>MoveCharRight()<
 
 
 if g:move_map_keys
-    execute 'vmap' s:MoveKey('j') '<Plug>MoveBlockDown'
-    execute 'vmap' s:MoveKey('k') '<Plug>MoveBlockUp'
-    execute 'vmap' s:MoveKey('h') '<Plug>MoveBlockLeft'
-    execute 'vmap' s:MoveKey('l') '<Plug>MoveBlockRight'
+    execute 'vmap' s:MoveKey(g:move_key_down)  '<Plug>MoveBlockDown'
+    execute 'vmap' s:MoveKey(g:move_key_up)    '<Plug>MoveBlockUp'
+    execute 'vmap' s:MoveKey(g:move_key_left)  '<Plug>MoveBlockLeft'
+    execute 'vmap' s:MoveKey(g:move_key_right) '<Plug>MoveBlockRight'
 
-    execute 'nmap' s:MoveKey('j') '<Plug>MoveLineDown'
-    execute 'nmap' s:MoveKey('k') '<Plug>MoveLineUp'
-    execute 'nmap' s:MoveKey('h') '<Plug>MoveCharLeft'
-    execute 'nmap' s:MoveKey('l') '<Plug>MoveCharRight'
+    execute 'nmap' s:MoveKey(g:move_key_down)  '<Plug>MoveLineDown'
+    execute 'nmap' s:MoveKey(g:move_key_up)    '<Plug>MoveLineUp'
+    execute 'nmap' s:MoveKey(g:move_key_left)  '<Plug>MoveCharLeft'
+    execute 'nmap' s:MoveKey(g:move_key_right) '<Plug>MoveCharRight'
 endif
